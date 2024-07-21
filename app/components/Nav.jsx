@@ -1,9 +1,22 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import Link from "next/link";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const Nav = () => {
+  const navBar = useRef(null);
+
+  useEffect(() => {
+    gsap.to(navBar.current, {
+      opacity: 1,
+      duration: 1,
+    });
+  }, []);
+
   return (
     <header className="container head">
-      <nav>
+      <nav ref={navBar}>
         <div className="logo">
           <svg
             width="1.75rem"
@@ -31,24 +44,54 @@ const Nav = () => {
         </div>
         <ul>
           <li>
-            <a href="#home" className="first_link">
+            <Link href="/" className="first_link">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#about">Über Mich</a>
+            <ScrollLink
+              to="überMich"
+              smooth={true}
+              duration={1000}
+              className="nav_link"
+            >
+              Über Mich
+            </ScrollLink>
           </li>
           <li>
-            <a href="#services">Services</a>
+            <ScrollLink
+              to="services"
+              smooth={true}
+              duration={1000}
+              className="nav_link"
+            >
+              Services
+            </ScrollLink>
           </li>
           <li>
-            <a href="#services">KUNDEN</a>
+            <ScrollLink
+              to="kunden"
+              smooth={true}
+              duration={1500}
+              className="nav_link"
+            >
+              Kunden
+            </ScrollLink>
           </li>
           <li>
-            <a href="#services">PREISE</a>
+            <ScrollLink
+              to="preise"
+              smooth={true}
+              duration={2000}
+              className="nav_link"
+            >
+              Preise
+            </ScrollLink>
           </li>
         </ul>
-        <a href="#kontakt">Kontakt</a>
+        <ScrollLink to="kontakt" smooth={true} duration={2000}>
+          Kontakt
+        </ScrollLink>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

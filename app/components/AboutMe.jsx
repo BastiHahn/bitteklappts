@@ -1,7 +1,39 @@
 "use client";
 import Image from "next/image";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const AboutMe = () => {
+  const headAbout1 = useRef(null);
+  const headAbout2 = useRef(null);
+  const headAbout3 = useRef(null);
+  const aboutSection = useRef(null);
+  const aboutSubHead = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap.to(
+      [
+        headAbout1.current,
+        headAbout2.current,
+        headAbout3.current,
+        aboutSubHead.current,
+      ],
+      {
+        opacity: 1,
+        y: "0px",
+        duration: 1,
+        scrollTrigger: {
+          trigger: aboutSection.current,
+          start: "top 80%",
+          once: "true",
+        },
+      }
+    );
+  }, []);
+
   const aboutItems = {
     title: "ÜBER MICH",
     description:
@@ -11,14 +43,20 @@ const AboutMe = () => {
     alt: "Dehnen",
   };
   return (
-    <section className="about_me">
+    <section className="about_me" ref={aboutSection} id="überMich">
       <div className="about_cont container">
         <div className="flex_cont">
           <div className="left">
-            <h2>über mich</h2>
-            <h3>Peter Bischof</h3>
-            <h4>Personal Trainer & Coach</h4>
-            <p className="abt_description">
+            <h2 className="left_h2" ref={headAbout1}>
+              über mich
+            </h2>
+            <h3 className="left_h3" ref={headAbout2}>
+              Peter Bischof
+            </h3>
+            <h4 className="left_h4" ref={headAbout3}>
+              Personal Trainer & Coach
+            </h4>
+            <p className="abt_description" ref={aboutSubHead}>
               Nach meinem abgeschlossenen Bachelor der Sportwissenschaften
               konnte ich meine mehr als 10 Jahre lange Expertise im Bereich
               Fitness und Personal Training aufbauen.
@@ -72,7 +110,7 @@ const AboutMe = () => {
                 width={600}
                 height={600}
                 quality={100}
-                blur
+                blur="true"
               />
             </div>
           </div>

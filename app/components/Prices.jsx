@@ -1,6 +1,28 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Prices = () => {
+  const headPrice = useRef(null);
+  const priceSection = useRef(null);
+  const priceSubHead = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap.to([headPrice.current, priceSubHead.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
+      scrollTrigger: {
+        trigger: priceSection.current,
+        start: "top 90%",
+        once: "true",
+      },
+    });
+  }, []);
+
   const checked = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -65,11 +87,13 @@ const Prices = () => {
   ];
 
   return (
-    <section className="section_prices">
+    <section className="section_prices" ref={priceSection} id="preise">
       <div className="content container">
         <div className="header_Cont">
-          <h1>Preise</h1>
-          <p className="beschreibung">
+          <h2 className="price_h2" ref={headPrice}>
+            Preise
+          </h2>
+          <p className="beschreibung" ref={priceSubHead}>
             Unsere Preisgestaltung ist darauf ausgelegt, Ihnen maximale
             Flexibilität und Transparenz zu bieten. Wir wissen, dass jeder Kunde
             unterschiedliche Bedürfnisse und Ziele hat, und daher haben wir ein

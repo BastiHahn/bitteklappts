@@ -1,6 +1,41 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Contact = () => {
+  const headContact = useRef(null);
+  const contactSection = useRef(null);
+  const contactSubHead = useRef(null);
+  const infoCard = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap.to([headContact.current, contactSubHead.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
+      scrollTrigger: {
+        trigger: contactSection.current,
+        start: "top 90%",
+        once: true,
+      },
+    });
+
+    gsap.to(infoCard.current, {
+      right: 0,
+      ease: "power4.out",
+      duration: 1.5,
+      scrollTrigger: {
+        trigger: contactSection.current,
+        start: "top 50%",
+        once: true,
+      },
+    });
+  }, []);
+
   const instaSVG = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -62,13 +97,13 @@ const Contact = () => {
   ];
 
   return (
-    <section className="contact_section">
+    <section className="contact_section" ref={contactSection} id="kontakt">
       <div className="bg_cont">
         <div className="black_bg"></div>
         <div className="green_bg"></div>
       </div>
 
-      <div className="info_card">
+      <div className="info_card" ref={infoCard}>
         <div className="inner_contact_info">
           <h4>Kontaktdaten</h4>
           <div className="contact_data">
@@ -82,7 +117,12 @@ const Contact = () => {
             </div>
             <div className="con_data_flex">
               {pinSVG}
-              <a href="#">Wendelsteinstr. 37, 83714 Miesbach</a>
+              <a
+                href="https://maps.app.goo.gl/kNBvZHEMDVevmSMv5"
+                target="_blank"
+              >
+                Wendelsteinstr. 37, 83714 Miesbach
+              </a>
             </div>
             <div className="con_data_flex">
               {instaSVG}
@@ -95,8 +135,10 @@ const Contact = () => {
       </div>
 
       <div className="contact_head container">
-        <h2>Kontakt</h2>
-        <p>
+        <h2 className="contact_h2" ref={headContact}>
+          Kontakt
+        </h2>
+        <p ref={contactSubHead} className="contact_subhead">
           Lass uns gemeinsam an deiner Gesundheit arbeiten. Bei einem
           kostenloses Erstgespräch finden wir heraus, wie wir deine Ziele
           schnell erreichen können. Erstgespräch finden wir heraus, wie wir

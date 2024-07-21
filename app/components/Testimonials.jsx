@@ -1,7 +1,27 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Testimonials = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  const headTests = useRef(null);
+  const testSection = useRef(null);
+  const testSubHead = useRef(null);
+
+  useEffect(() => {
+    gsap.to([headTests.current, testSubHead.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
+      scrollTrigger: {
+        trigger: testSection.current,
+        start: "top 85%",
+        once: "true",
+      },
+    });
+  }, []);
   const starSVG = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -56,11 +76,13 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="section_testimonials">
+    <section className="section_testimonials" ref={testSection} id="kunden">
       <div className="divider_succ1"></div>
       <div className="container succ_cont">
-        <h2 className="h_success">Erfolgsgeschichten</h2>
-        <p className="erfolg_descr">
+        <h2 className="h_success" ref={headTests}>
+          Erfolgsgeschichten
+        </h2>
+        <p className="erfolg_descr" ref={testSubHead}>
           Lass dich von den Erfolgsgeschichten meiner Klienten motivieren, die
           durch meine professionelle Anleitung und unterstützende Betreuung ihre
           Grenzen überwunden haben. Erfahre, was sie über unsere gemeinsame
@@ -78,7 +100,7 @@ const Testimonials = () => {
                 width={600}
                 height={800}
                 quality={100}
-                blur
+                blur="true"
               />
             </div>
 
