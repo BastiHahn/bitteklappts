@@ -1,7 +1,56 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Services = () => {
+  const headServices = useRef(null);
+  const servSection = useRef(null);
+  const servSubHead = useRef(null);
+  const divLoaders = useRef([]);
+  const servDescriptions = useRef([]);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap.to([headServices.current, servSubHead.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
+      scrollTrigger: {
+        trigger: servSection.current,
+        start: "top 90%",
+        once: "true",
+      },
+    });
+
+    gsap.utils.toArray(divLoaders.current).forEach((loader, index) => {
+      const triggerElement = servDescriptions.current[index];
+      gsap.to(loader, {
+        width: "100%",
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: "top 15%",
+          end: "bottom 80%",
+          scrub: true,
+        },
+      });
+    });
+  }, []);
+
+  const addToDivLoaders = (el) => {
+    if (el && !divLoaders.current.includes(el)) {
+      divLoaders.current.push(el);
+    }
+  };
+
+  const addToServDescriptions = (el) => {
+    if (el && !servDescriptions.current.includes(el)) {
+      servDescriptions.current.push(el);
+    }
+  };
+
   const arrow = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -88,10 +137,12 @@ const Services = () => {
     },
   ];
   return (
-    <section className="services_section">
+    <section className="services_section" ref={servSection} id="services">
       <div className="container serv_container">
-        <h2>meine Services</h2>
-        <p className="serv_descr_p">
+        <h2 className="serv_cont_h2" ref={headServices}>
+          meine Services
+        </h2>
+        <p className="serv_descr_p" ref={servSubHead}>
           Ich verfolge einen ganzheitlichen Ansatz, der auf Training, Lifestyle
           Coaching & Regeneration setzt und dadurch die 3 Grundsäulen für
           optimale Gesundheit bildet. Ich gehe auf deine Ziele und individuellen
@@ -102,6 +153,7 @@ const Services = () => {
           <div
             className={`serv_flex serv ${index % 2 !== 0 ? "reverse" : ""}`}
             key={service.id}
+            id={service.id}
           >
             <div className="serv_img_cont">
               <Image
@@ -111,10 +163,11 @@ const Services = () => {
                 src={service.image}
                 alt={service.title & "Bild"}
                 className="serv_image"
+                blur="true"
               />
-              <img />
+              <div className="div_loader" ref={addToDivLoaders}></div>
             </div>
-            <div className="serv_descr_cont">
+            <div className="serv_descr_cont" ref={addToServDescriptions}>
               <h2>
                 <span>0{index + 1}</span> {service.title}
               </h2>

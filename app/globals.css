@@ -59,7 +59,7 @@ body {
 
 nav {
   width: 100%;
-
+  opacity: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,57 +77,92 @@ nav {
 }
 
 ul {
-  gap: 2rem;
+  gap: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style: none;
 }
 
-ul a,
+.nav_link,
 nav a {
   font-weight: 500;
   text-decoration: none;
   color: var(--clrWhite);
-  text-transform: uppercase;
 }
 
 ul a:hover,
 nav a:hover {
-  color: var(--clrGreen);
+  color: var(--clrWhite);
+  cursor: pointer;
 }
 
 .hamburger {
   display: none;
 }
-
 li {
   padding: 0.25rem 1rem;
   position: relative;
+  box-sizing: border-box;
 }
 
-.first_link {
-  font-weight: 500;
-  color: var(--clrGreen);
+.first_link::after,
+li:not(:first-child)::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  height: 100%;
+  z-index: -1;
+  box-sizing: border-box;
 }
 
-/*
-  li::after {
-    position: absolute;
-    left: 0;
-    top: 0;
-    content: "";
-    width: 2px;
-    height: 100%;
-    background-color: var(--clrGreen);
-    transition: width 0.3s ease-in-out;
-    z-index: -1;
-  }
+.first_link::after {
+  width: 2px;
+  background-color: var(--clrGreen) !important;
+  transition: width 0.3s ease-in-out;
+}
 
-  li:hover::after {
-    width: 100%;
-  }
-    */
+.first_link:hover::after {
+  width: 100%;
+}
+
+li:not(:first-child)::after {
+  width: 1px;
+  background-color: var(--clrWhite);
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0s ease;
+}
+
+li:not(:first-child):hover::after {
+  width: 100%;
+  background-color: var(--clrGreen);
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0s ease;
+}
+
+li:not(:first-child):not(:hover)::after {
+  width: 1px;
+  background-color: var(--clrWhite);
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0.3s ease 0.3s;
+}
+
+li:hover::after {
+  background-color: var(--clrGreen);
+}
+
+li::after {
+  display: block;
+  box-sizing: border-box;
+}
+
+li:not(:hover)::after {
+  background-color: var(--clrWhite);
+}
 
 /* HERO SECTION */
 
@@ -137,61 +172,68 @@ li {
   position: relative;
   height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: end;
 }
 
 .hero_content {
-  position: absolute;
-  width: 100%;
+  position: relative;
   height: 90%;
   top: 10%;
 }
 .hero_left {
   position: absolute;
-  outline: 1px solid yellow;
   height: 70%;
-  width: 40%;
+  width: 50%;
   z-index: 10;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   top: 50%;
-  left: 50%;
+  left: 0%;
 }
 
-.hero_left h1 {
+.hero_h1 {
   font-weight: bold;
   font-size: 5rem;
   letter-spacing: -0.04em;
   font-style: italic;
   line-height: 5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateX(-50px);
 }
 
 .hero_subtext {
   font-size: 1.1rem;
   line-height: 1.5rem;
   margin-bottom: 3rem;
+  transform: translateX(-50px);
+  opacity: 0;
 }
 
-.hero_left button {
+.hero_left_button {
   background-color: var(--clrGreen);
+  font-family: var(--primeFont);
   color: var(--clrWhite);
+  letter-spacing: -0.01em;
   padding: 0.5rem 6rem;
   font-size: 1.3rem;
   border: none;
-  text-transform: uppercase;
   font-weight: 600;
+  opacity: 0;
+  transform: translateX(-50px);
 }
 
 .hero_right {
-  height: 100%;
-  flex: 1;
+  height: 90%;
+  width: 80%;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 }
 
 .hero_img_cont {
   height: 100%;
-  width: 100%;
+  width: 0%;
   overflow: hidden;
 }
 
@@ -230,28 +272,34 @@ li {
   font-family: var(--primeFont);
 }
 
-.left h2 {
+.left_h2 {
   font-size: var(--fontH5);
   text-transform: uppercase;
   color: var(--clrGreen);
   letter-spacing: -0.02em;
   font-weight: 700;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-.left h3 {
+.left_h3 {
   font-size: var(--fontH2);
   letter-spacing: -0.06em;
   font-weight: 600;
   color: var(--clrBlack);
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-.left h4 {
+.left_h4 {
   font-size: var(--fontH6);
   color: var(--clrDarkGrey);
   letter-spacing: -0.01em;
   font-weight: 500;
   margin-top: -0.25rem;
   margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .abt_description {
@@ -350,13 +398,15 @@ li {
   height: 97%;
 }
 
-.serv_container h2 {
+.serv_cont_h2 {
   font-size: var(--fontH3);
   letter-spacing: -0.02em;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--clrGreen);
   margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .serv_descr_p {
@@ -364,6 +414,8 @@ li {
   margin-bottom: 4rem;
   color: var(--clrGrey);
   line-height: 1.5rem;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .serv_flex {
@@ -390,13 +442,21 @@ li {
 
 .serv_image {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 10px);
   object-fit: cover;
   transition: 0.3s ease-in-out;
+  margin-bottom: 0px;
+}
+
+.div_loader {
+  height: 4px;
+  width: 0%;
+  background-color: var(--clrGreen);
+  margin-top: 0px;
 }
 
 .serv_image:hover {
-  scale: 1.05;
+  scale: 1.01;
 }
 
 .serv_descr_cont {
@@ -486,14 +546,9 @@ li {
 /* PREISE */
 .section_prices {
   color: var(--clrBlack);
-  /*
-* Created with https://www.css-gradient.com
-* Gradient link: https://www.css-gradient.com/?c1=1bbc6f&c2=252323&gt=r&gd=dcr
-*/
   background-color: var(--clrWhite);
   width: 100%;
   height: 110vh;
-
   display: flex;
   justify-content: center; /* Horizontal centering */
   align-items: center;
@@ -597,25 +652,10 @@ h3 {
   color: var(--clrWhite);
 }
 
-.priceview .card:nth-of-type(2) button {
-  background-color: var(--clrBlack);
-  color: var(--clrWhite);
-  border: 1px solid var(--clrWhite);
-}
-
-.priceview .card:nth-of-type(2) button:hover {
-  border: 1px solid var(--clrGreen);
-  color: var(--clrGreen);
-}
-
-.priceview .card:nth-of-type(3) button {
+.card button:hover {
   background-color: var(--clrWhite);
   color: var(--clrBlack);
-  border: 1px solid var(--clrBlack);
-}
-
-.card button:hover {
-  background-color: var(--clrGreen);
+  border: 1px solid var(--clrWhite);
 }
 
 .divide {
@@ -630,24 +670,28 @@ h3 {
   margin-bottom: 2rem;
   width: auto;
   margin-left: 0rem;
+}
 
-  h1 {
-    font-family: var(--primeFont);
-    font-size: 3rem;
-    margin-bottom: 0rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--clrBlack);
-  }
+.beschreibung {
+  font-family: var(--primeFont);
+  width: 65%;
+  position: relative;
+  color: var(--clrDarkGrey);
+  line-height: 1.5rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(50px);
+}
 
-  .beschreibung {
-    font-family: var(--primeFont);
-    width: 65%;
-    position: relative;
-    color: var(--clrDarkGrey);
-    line-height: 1.5rem;
-    font-weight: 500;
-  }
+.price_h2 {
+  font-family: var(--primeFont);
+  font-size: 3rem;
+  margin-bottom: 0rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--clrBlack);
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 /* CONTACT SECTION */
@@ -687,9 +731,10 @@ h3 {
   height: 70%;
   width: 40%;
   background-color: var(--clrWhite);
-  right: 0;
+  right: -630px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
 }
 
 .inner_contact_info {
@@ -713,6 +758,7 @@ h3 {
   height: auto;
   width: 100%;
   display: block;
+  z-index: 50;
 }
 
 .con_data_flex {
@@ -730,6 +776,7 @@ h3 {
   font-size: 1.2rem;
   cursor: pointer;
   text-decoration: none;
+  z-index: 2;
 }
 
 .contact_head {
@@ -738,15 +785,19 @@ h3 {
   width: 100%;
 }
 
-.contact_head h2 {
+.contact_h2 {
   font-family: var(--primeFont);
   color: var(--clrGreen);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   font-size: var(--fontH4);
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-.contact_head p {
+.contact_subhead {
+  opacity: 0;
+  transform: translateY(50px);
   width: 50%;
   color: var(--clrGrey);
   line-height: 1.5rem;
@@ -840,7 +891,7 @@ label {
 
 .contact_div input:focus,
 .my_textarea:focus {
-  border: 1px solid var(--clrWhite); /* oder green ?!*/
+  border: 1px solid var(--clrGreen); /* oder green ?!*/
 }
 
 .send_button {
@@ -938,6 +989,8 @@ label {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .succ_cont {
@@ -960,6 +1013,8 @@ label {
 .erfolg_descr {
   width: 65%;
   line-height: 1.5rem;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .testi_cont {
@@ -1213,7 +1268,7 @@ footer {
 }
 
 .foot_socials svg:hover {
-  fill: var(--clrGreen);
+  fill: var(--clrWhite);
 }
 
 .cont_footer_links a {

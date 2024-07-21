@@ -42,7 +42,7 @@ const Footer = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill="var(--clrWhite)"
+              fill="var(--clrGrey)"
               className="bi bi-instagram"
               viewBox="0 0 16 16"
             >
@@ -52,7 +52,7 @@ const Footer = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill="var(--clrWhite)"
+              fill="var(--clrGrey)"
               className="bi bi-facebook"
               viewBox="0 0 16 16"
             >
@@ -62,7 +62,7 @@ const Footer = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill="var(--clrWhite)"
+              fill="var(--clrGrey)"
               className="bi bi-twitter-x"
               viewBox="0 0 16 16"
             >
@@ -73,28 +73,35 @@ const Footer = () => {
         <div className="foot_column">
           <h4>Links</h4>
           <div className="cont_footer_links">
-            <a href="#">Home</a>
-            <a href="#">Über Mich</a>
-            <a href="#">Kontakt</a>
-            <a href="#">Success Stories</a>
+            <a href="/">Home</a>
+            <a href="#überMich">Über Mich</a>
+            <a href="#kunden">Kunden</a>
+            <a href="#preise">Preise</a>
           </div>
         </div>
         <div className="foot_column">
           <h4>Services</h4>
           <div className="cont_footer_links">
-            <a href="#">Personal Training</a>
-            <a href="#">Hautfaltenmessung</a>
-            <a href="#">Fasziales Stretching</a>
-            <a href="#">Kleingruppentraining</a>
+            <a href="#1">Personal Training</a>
+            <a href="#2">Hautfaltenmessung</a>
+            <a href="#3">Fasziales Stretching</a>
+            <a href="#4">Kleingruppentraining</a>
           </div>
         </div>
         <div className="foot_column">
           <h4>Kontakt</h4>
           <div className="cont_footer_links">
-            <a href="#">peter-bischof@gmx.de</a>
-            <a href="#">+49 176 32273614</a>
-            <a href="#">83714 Miesbach</a>
-            <a href="#">LinkedIn</a>
+            <a href="mailto:peter-bischof@gmx.de">peter-bischof@gmx.de</a>
+            <a href="tel:+4917632273614">+49 176 32273614</a>
+            <a href="https://maps.app.goo.gl/kNBvZHEMDVevmSMv5" target="blank">
+              83714 Miesbach
+            </a>
+            <a
+              href="https://www.linkedin.com/in/peter-bischof-9a438114b/"
+              target="blank"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </div>
