@@ -1,6 +1,34 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import priceItems from "@data/priceItems";
+import priceSubheader from "@data/priceSubheader";
+
+const toContact = () => {
+  document.getElementById("kontakt").scrollIntoView({ behavior: "smooth" });
+};
 
 const Prices = () => {
+  const headPrice = useRef(null);
+  const priceSection = useRef(null);
+  const priceSubHead = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    gsap.to([headPrice.current, priceSubHead.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
+      scrollTrigger: {
+        trigger: priceSection.current,
+        start: "top 90%",
+        once: "true",
+      },
+    });
+  }, []);
+
   const checked = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,74 +42,20 @@ const Prices = () => {
     </svg>
   );
 
-  const unchecked = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="var(--clrWhite)"
-      className="bi bi-ban-fill"
-      viewBox="0 0 16 16"
-    >
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M2.71 12.584q.328.378.706.707l9.875-9.875a7 7 0 0 0-.707-.707l-9.875 9.875Z" />
-    </svg>
-  );
-
-  const priceItems = [
-    {
-      service: "Personal Training",
-      description: "Für Personal Training und weitere Dienste für Dich.",
-      subtext: "pro Monat",
-      price: 150,
-      features: {
-        f1: "wöchentl. Feedbackgespräch",
-        f2: "1 Hautfaltenmessung",
-        f3: "1 Einzelplan",
-      },
-    },
-    {
-      service: "Hautfaltenmessung",
-      description: "Um deine Potentiale zu entecken und gezielt zu nutzen.",
-      subtext: "pro Messung",
-      price: 70,
-      features: {
-        f1: "Messung der Hautfalten",
-        f2: "Analyse & Auswertung",
-        f3: "Besprechung der Maßnahmen",
-      },
-    },
-    {
-      service: "Fasziales Stretching",
-      description:
-        "Da Regeneration und Mobilität wichtiger sind als Du denkst.",
-      subtext: "pro Stunde",
-      price: 100,
-      features: {
-        f1: "Anamnese",
-        f2: "Stretching & Behandlung",
-        f3: "Coaching & Planung",
-      },
-    },
-  ];
-
   return (
-    <section className="section_prices">
-      <div className="content container">
-        <div className="header_Cont">
-          <h1>Preise</h1>
-          <p className="beschreibung">
-            Unsere Preisgestaltung ist darauf ausgelegt, Ihnen maximale
-            Flexibilität und Transparenz zu bieten. Wir wissen, dass jeder Kunde
-            unterschiedliche Bedürfnisse und Ziele hat, und daher haben wir ein
-            Preismodell entwickelt, das auf Ihre individuellen Anforderungen
-            abgestimmt ist.
-          </p>
-        </div>
+    <section className="section_prices" ref={priceSection} id="preise">
+      <div className="container pr_cont">
+        <h2 className="price_h2" ref={headPrice}>
+          Preise
+        </h2>
+        <p className="beschreibung" ref={priceSubHead}>
+          {priceSubheader[4].sub}
+        </p>
 
         <div className="priceview">
           {priceItems.map((item, index) => (
             <div className="card" key={index}>
-              <div className="card_inside">
+              <div className="inner_card">
                 <h3>{item.service}</h3>
                 <div className="price_info">
                   <p className="info_sub">
@@ -109,9 +83,7 @@ const Prices = () => {
                   </div>
                   <div className="divide"></div>
                 </div>
-                <div className="btn-div">
-                  <button>Buchen</button>
-                </div>
+                <button onClick={toContact}>Buchen</button>
               </div>
             </div>
           ))}
