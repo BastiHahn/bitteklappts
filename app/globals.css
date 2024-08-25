@@ -28,7 +28,7 @@
 body {
   background-color: var(--clrBlack);
   word-spacing: 0.005rem;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
 * {
@@ -318,6 +318,9 @@ li:not(:hover)::after {
 }
 
 @media (max-width: 780px) {
+  html {
+    overflow-x: hidden;
+  }
 }
 
 @media (max-width: 640px) {
@@ -383,7 +386,6 @@ li:not(:hover)::after {
 @media (max-width: 1280px) {
   .hero_subtext {
     width: 70%;
-    outline: 1px solid orangered;
   }
 
   .hero_h1 {
@@ -1033,7 +1035,6 @@ button {
   }
 
   .serv_descr_p {
-    outline: 1px solid orangered;
     width: 100%;
   }
 
@@ -1442,7 +1443,6 @@ h3 {
   width: 100%;
   display: block;
   z-index: 50;
-  outline: 1px solid red;
 }
 
 .con_data_flex {
@@ -2263,7 +2263,6 @@ footer {
   margin-right: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  outline: 1px solid red;
 }
 
 /* 2xl */
