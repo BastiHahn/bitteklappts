@@ -169,6 +169,10 @@ const Contact = () => {
 
   return (
     <section className="con_sec" ref={contactSection} id="kontakt">
+      <div className="bg_div">
+        <div className="bg_black"></div>
+        <div className="bg_green"></div>
+      </div>
       <div className="info_card" ref={infoCard}>
         <div className="inner_contact_info">
           <h4>Kontaktdaten</h4>
