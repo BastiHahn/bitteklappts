@@ -1399,30 +1399,33 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  z-index: -1;
-}
-
-.bg_black {
-  width: 80%;
-  height: 100%;
   z-index: -1;
 }
 
 .bg_green {
   width: 20%;
+  position: absolute;
   background-color: var(--clrGreen);
   height: 100%;
+  right: 0;
+}
+
+.con_grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  outline: 1px solid red;
+}
+
+.contact_form_cont {
+  outline: 1px solid green;
 }
 
 .info_card {
-  position: absolute;
-  bottom: 8rem;
-  width: 40%;
   background-color: var(--clrWhite);
-  right: -100%;
   z-index: 1;
   padding: 3rem 0rem;
+  transform: translateX(150%);
 }
 
 .inner_contact_info {
@@ -1476,11 +1479,6 @@ h3 {
   z-index: 2;
 }
 
-.contact_wrapper {
-  position: relative;
-  min-height: 70vh;
-}
-
 .contact_head {
   margin-bottom: 3rem;
 }
@@ -1520,7 +1518,7 @@ h3 {
 }
 
 form {
-  width: 50%;
+  width: 100%;
 }
 
 .form_flex {
@@ -1588,7 +1586,7 @@ label {
   font-weight: 600;
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
-  margin-top: 3rem;
+
   border: 1px solid var(--clrGreen);
   transition: all 0.2s ease-in-out;
 }
@@ -1665,8 +1663,6 @@ label {
 }
 
 .success_message {
-  position: absolute;
-  bottom: -3rem;
   color: var(--clrGreen);
   font-weight: 500;
   margin: 1rem 0rem;
@@ -1695,22 +1691,36 @@ label {
   .contact_subhead {
     width: 70%;
   }
+  .con_grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+  }
   .inner_contact_info {
     padding: 0rem 4rem;
   }
 }
 
 @media (max-width: 1024px) {
+  .bg_green {
+    display: none;
+  }
+
+  .con_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+    outline: 1px solid red;
+  }
   form {
-    width: 60%;
+    width: 100%;
   }
   .contact_subhead {
-    width: 85%;
+    width: 100%;
   }
 
   .info_card {
-    width: 35%;
-    padding: 3rem 0rem;
+    padding: 3rem 2rem;
   }
   .inner_contact_info {
     padding: 0rem 2rem;
@@ -1719,11 +1729,7 @@ label {
 
 @media (max-width: 780px) {
   .con_sec {
-    max-height: 150vh;
-  }
-
-  .bg_green {
-    background-color: var(--clrBlack);
+    padding-bottom: 4rem;
   }
 
   .contact_subhead {
@@ -1733,31 +1739,18 @@ label {
   form {
     width: 100%;
   }
-
-  .con_sec {
-    height: 180vh;
-  }
-
-  .info_card {
-    width: 90%;
-    transform: translateX(50%);
-    left: -40%;
-  }
-}
-
-@media (max-width: 640px) {
 }
 
 @media (max-width: 500px) {
-  .con_sec {
-    height: 220vh;
-  }
-
   .form_flex {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0rem;
     margin-bottom: 1rem;
+  }
+
+  .info_card {
+    padding: 2rem 1rem;
   }
 }
 

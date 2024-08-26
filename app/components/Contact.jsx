@@ -100,7 +100,7 @@ const Contact = () => {
     });
 
     gsap.to(infoCard.current, {
-      right: 0,
+      x: 0,
       ease: "power4.out",
       duration: 1.5,
       scrollTrigger: {
@@ -170,40 +170,7 @@ const Contact = () => {
   return (
     <section className="con_sec" ref={contactSection} id="kontakt">
       <div className="bg_div">
-        <div className="bg_black"></div>
         <div className="bg_green"></div>
-      </div>
-      <div className="info_card" ref={infoCard}>
-        <div className="inner_contact_info">
-          <h4>Kontaktdaten</h4>
-          <div className="contact_data">
-            <div className="con_data_flex">
-              {mailSVG}
-              <Link href="mailto:peter-bischof@gmx.de">
-                peter-bischof@gmx.de
-              </Link>
-            </div>
-            <div className="con_data_flex">
-              {phoneSVG}
-              <Link href="tel:+4917632273614">+49 176 32273614</Link>
-            </div>
-            <div className="con_data_flex">
-              {linkedInSVG}
-              <Link
-                href="https://www.linkedin.com/in/peter-bischof-9a438114b/"
-                target="_blank"
-              >
-                Folge mir auf LinkedIn
-              </Link>
-            </div>
-            <div className="con_data_flex">
-              {instaSVG}
-              <Link href="https://www.instagram.com/piet_0612" target="_blank">
-                @piet_0612
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="contact_head container">
@@ -215,84 +182,122 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className="contact_form_cont container">
-        <form ref={formRef} onSubmit={sendEmail}>
-          <div className="form_flex">
-            <div className="contact_div">
-              <label htmlFor="name">Name</label>
-              <input
+      <div className="con_grid container">
+        <div className="contact_form_cont">
+          <form ref={formRef} onSubmit={sendEmail}>
+            <div className="form_flex">
+              <div className="contact_div">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  placeholder="Max Mustermann"
+                  id="name"
+                  autoComplete="true"
+                  name="user_name"
+                  minLength={3}
+                  required
+                  ref={nameRef}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="contact_div">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  placeholder="m.mustermann@web.de"
+                  id="email"
+                  autoComplete="true"
+                  name="user_email"
+                  required
+                  ref={emailRef}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="div_textarea">
+              <label htmlFor="textarea">Deine Nachricht</label>
+              <textarea
+                className="my_textarea"
+                id="textarea"
+                placeholder="Ich habe Fragen zum Personal Training..."
+                name="message"
                 type="text"
-                placeholder="Max Mustermann"
-                id="name"
-                autoComplete="true"
-                name="user_name"
-                minLength={3}
+                minLength={5}
                 required
-                ref={nameRef}
+                rows={5}
+                ref={messageRef}
                 onChange={handleChange}
-              />
+              ></textarea>
             </div>
 
-            <div className="contact_div">
-              <label htmlFor="email">Email</label>
+            <div className="div_checkbox">
               <input
-                type="email"
-                placeholder="m.mustermann@web.de"
-                id="email"
-                autoComplete="true"
-                name="user_email"
+                type="checkbox"
+                className="check"
+                id="check"
                 required
-                ref={emailRef}
-                onChange={handleChange}
+                ref={checkBoxRef}
+                onClick={handleChange}
               />
+              <label className="datenschutz" htmlFor="check">
+                Datenschutzerklärung gelesen und akzeptiert. *
+              </label>
+            </div>
+
+            {succ && (
+              <p className="success_message">
+                Vielen Dank für Deine Nachricht! Ich melde mich schnellstmöglich
+                bei Dir.
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className={`${isFormValid ? "send_button" : "disabled_button"}`}
+              disabled={!isFormValid}
+            >
+              SENDEN
+            </button>
+          </form>
+        </div>
+
+        <div className="info_card" ref={infoCard}>
+          <div className="inner_contact_info">
+            <h4>Kontaktdaten</h4>
+            <div className="contact_data">
+              <div className="con_data_flex">
+                {mailSVG}
+                <Link href="mailto:peter-bischof@gmx.de">
+                  peter-bischof@gmx.de
+                </Link>
+              </div>
+              <div className="con_data_flex">
+                {phoneSVG}
+                <Link href="tel:+4917632273614">+49 176 32273614</Link>
+              </div>
+              <div className="con_data_flex">
+                {linkedInSVG}
+                <Link
+                  href="https://www.linkedin.com/in/peter-bischof-9a438114b/"
+                  target="_blank"
+                >
+                  Folge mir auf LinkedIn
+                </Link>
+              </div>
+              <div className="con_data_flex">
+                {instaSVG}
+                <Link
+                  href="https://www.instagram.com/piet_0612"
+                  target="_blank"
+                >
+                  @piet_0612
+                </Link>
+              </div>
             </div>
           </div>
-
-          <div className="div_textarea">
-            <label htmlFor="textarea">Deine Nachricht</label>
-            <textarea
-              className="my_textarea"
-              id="textarea"
-              placeholder="Ich habe Fragen zum Personal Training..."
-              name="message"
-              type="text"
-              minLength={5}
-              required
-              rows={5}
-              ref={messageRef}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-
-          <div className="div_checkbox">
-            <input
-              type="checkbox"
-              className="check"
-              id="check"
-              required
-              ref={checkBoxRef}
-              onClick={handleChange}
-            />
-            <label className="datenschutz" htmlFor="check">
-              Datenschutzerklärung gelesen und akzeptiert. *
-            </label>
-          </div>
-
-          {succ && (
-            <p className="success_message">
-              Vielen Dank für Deine Nachricht! Ich melde mich schnellstmöglich
-              bei Dir.
-            </p>
-          )}
-
-          <button
-            type="submit"
-            className={`${isFormValid ? "send_button" : "disabled_button"}`}
-            disabled={!isFormValid}
-          >
-            SENDEN
-          </button>
-        </form>
+        </div>
       </div>
     </section>
   );
