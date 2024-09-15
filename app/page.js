@@ -1,9 +1,10 @@
+"use client";
 import Hero from "./components/Hero";
 import AboutCopy from "./components/AboutCopy";
-import Services from "./components/Services";
+import NewServices from "./components/NewServices";
+import NewContact from "./components/NewContact";
 import Prices from "./components/Prices";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
+import AnotherTestimonial from "./components/AnotherTestimonial";
 
 export default function Home() {
   return (
@@ -11,9 +12,9 @@ export default function Home() {
       <main>
         <Hero />
         <AboutCopy />
-        <Services />
-        <Testimonials />
-        <Contact />
+        <NewServices />
+        <AnotherTestimonial />
+        <NewContact />
         <Prices />
       </main>
     </>

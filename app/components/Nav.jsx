@@ -2,13 +2,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import links from "@data/links";
 import logo from "@data/logo";
 
 const Nav = () => {
+  const headerRef = useRef(null);
   const navBar = useRef(null);
   const menuRef = useRef(null);
+
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -16,17 +19,32 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        console.log("scroll down");
+        setIsNavVisible(false);
+        headerRef.current.style.opacity = 0;
+        headerRef.current.style.transform = "translateY(-50px)";
+        headerRef.current.style.transition = "all ease-in-out 0.5s";
+      } else {
+        console.log("scroll up");
+        setIsNavVisible(true);
+        headerRef.current.style.opacity = 1;
 
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove("no-scroll");
+        headerRef.current.style.transform = "translateY(0px)";
+        headerRef.current.style.transition = "all 0.5s ease-in-out";
+      }
+      setLastScrollY(currentScrollY);
     };
-  }, [menuOpen]);
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]); // Properly include dependencies
 
   useEffect(() => {
     if (menuOpen) {
@@ -35,39 +53,29 @@ const Nav = () => {
   }, [menuOpen]);
 
   return (
-    <header className="head">
+    <header className="head" id="header_id" ref={headerRef}>
       <nav ref={navBar} className="container">
         <div className="logo pointer">{logo}</div>
         <ul>
           <li>
-            <Link href="/" className="first_link">
+            <Link href="/#home" className="first_link">
               Home
             </Link>
           </li>
           {links.map((link) => (
             <li key={link.id}>
-              <ScrollLink
-                to={link.to}
-                smooth={true}
-                duration={link.dur}
-                className="nav_link"
-              >
+              <Link href={link.to} className="nav_link">
                 {link.name}
-              </ScrollLink>
+              </Link>
             </li>
           ))}
         </ul>
-        <ScrollLink
-          to="kontakt"
-          smooth={true}
-          duration={1500}
-          className="nav_contact_link"
-        ></ScrollLink>
+        <Link href="/#kontakt" className="nav_contact_link"></Link>
         {menuOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="2.25rem"
-            height="2.25rem"
+            width="2rem"
+            height="2rem"
             fill="var(--clrWhite)"
             className="close_ham"
             viewBox="0 0 16 16"
@@ -96,33 +104,27 @@ const Nav = () => {
         <div ref={menuRef} className="hamb_menu">
           <div className="hamb_cont container">
             <div className="link_ham_cont">
-              <Link href="/" className="ham_link">
+              <Link href="/#home" className="ham_link">
                 Home
               </Link>
             </div>
             {links.map((link) => (
               <div key={link.id} className="link_ham_cont">
-                <ScrollLink
+                <Link
                   onClick={toggleMenu}
-                  to={link.to}
+                  href={link.to}
                   smooth={true}
                   duration={link.dur}
                   className="ham_link"
                 >
                   {link.name}
-                </ScrollLink>
+                </Link>
               </div>
             ))}
             <div className="link_ham_cont">
-              <ScrollLink
-                onClick={toggleMenu}
-                to="kontakt"
-                smooth={true}
-                duration={1500}
-                className="ham_link"
-              >
+              <Link onClick={toggleMenu} href="kontakt" className="ham_link">
                 Kontakt
-              </ScrollLink>
+              </Link>
             </div>
           </div>
         </div>

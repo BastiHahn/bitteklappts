@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { animateOnScroll } from "./gsapAnimations";
 import priceItems from "@data/priceItems";
 import priceSubheader from "@data/priceSubheader";
 
@@ -14,19 +13,12 @@ const Prices = () => {
   const priceSection = useRef(null);
   const priceSubHead = useRef(null);
 
-  gsap.registerPlugin(ScrollTrigger);
-
   useEffect(() => {
-    gsap.to([headPrice.current, priceSubHead.current], {
-      opacity: 1,
-      y: "0px",
-      duration: 1,
-      scrollTrigger: {
-        trigger: priceSection.current,
-        start: "top 90%",
-        once: "true",
-      },
-    });
+    // Call the reusable animation function
+    animateOnScroll(
+      [headPrice.current, priceSubHead.current],
+      priceSection.current
+    );
   }, []);
 
   const checked = (
@@ -45,10 +37,13 @@ const Prices = () => {
   return (
     <section className="section_prices" ref={priceSection} id="preise">
       <div className="container pr_cont">
-        <h2 className="price_h2" ref={headPrice}>
+        <h2 className="section_h2" ref={headPrice}>
           Preise
         </h2>
-        <p className="beschreibung" ref={priceSubHead}>
+        <p
+          className="section_description w-70 serv_descr_gsap"
+          ref={priceSubHead}
+        >
           {priceSubheader[4].sub}
         </p>
 

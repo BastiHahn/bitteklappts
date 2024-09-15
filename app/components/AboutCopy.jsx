@@ -6,53 +6,31 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import certificates from "@data/certificates";
 import aboutData from "@data/aboutData";
 
-const AboutMe = () => {
+const AboutCopy = () => {
   const headAbout1 = useRef(null);
   const headAbout2 = useRef(null);
   const headAbout3 = useRef(null);
   const aboutSection = useRef(null);
-  const aboutSubHead = useRef(null);
-  const imageRef = useRef(null);
   const handleClick = (link) => () => {
     window.open(link, "_blank");
   };
 
-  gsap.registerPlugin(ScrollTrigger);
-
   useEffect(() => {
-    gsap.to(
-      [
-        headAbout1.current,
-        headAbout2.current,
-        headAbout3.current,
-        aboutSubHead.current,
-      ],
-      {
-        opacity: 1,
-        y: "0px",
-        duration: 1,
-        scrollTrigger: {
-          trigger: aboutSection.current,
-          start: "top 80%",
-          once: "true",
-        },
-      }
-    );
-
-    gsap.to(imageRef.current, {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to([headAbout1.current, headAbout2.current, headAbout3.current], {
+      opacity: 1,
+      y: "0px",
+      duration: 1,
       scrollTrigger: {
         trigger: aboutSection.current,
-        start: "bottom 80%",
-        end: "bottom 60%",
-        scrub: true,
+        start: "top 80%",
+        once: "true",
       },
-
-      transform: "translateY(10%)",
     });
   }, []);
 
   return (
-    <section className="about_me" ref={aboutSection} id="überMich">
+    <section className="about_me" ref={aboutSection} id="über-mich">
       <div className="grid-container container">
         <div className="grid-item item1">
           <h2 className="grid_h2" ref={headAbout1}>
@@ -62,13 +40,9 @@ const AboutMe = () => {
             Peter Bischof
           </h3>
           <h4 className="grid_h4" ref={headAbout3}>
-            Personal Trainer & Coach
+            Personal Trainer & Lifestyle Coach
           </h4>
-          <p ref={aboutSubHead}>
-            Nach meinem abgeschlossenen Bachelor der Sportwissenschaften konnte
-            ich meine mehr als 10 Jahre lange Expertise im Bereich Fitness und
-            Personal Training aufbauen.
-          </p>
+
           <p className="abt_description">{aboutData[0].description1}</p>
 
           <div className="socials">
@@ -114,11 +88,11 @@ const AboutMe = () => {
               src="/images/piet smiling.png"
               alt="über mich bild"
               className="abt_img"
-              width={1000}
-              height={1000}
+              width={600}
+              height={600}
               quality={100}
               blur="true"
-              ref={imageRef}
+              priority
             />
           </div>
         </div>
@@ -151,4 +125,4 @@ const AboutMe = () => {
   );
 };
 
-export default AboutMe;
+export default AboutCopy;

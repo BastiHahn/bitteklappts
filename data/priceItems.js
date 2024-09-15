@@ -1,5 +1,6 @@
 const priceItems = [
   {
+    id: 1,
     service: "Hautfaltenmessung",
     description: "Um deine Potentiale zu entecken und gezielt zu nutzen.",
     subtext: "pro Messung",
@@ -11,6 +12,7 @@ const priceItems = [
     },
   },
   {
+    id: 2,
     service: "Personal Training",
     description: "Auf Dich individuell zu geschnittenes Trainingsprogramm.",
     subtext: "pro Stunde",
@@ -22,6 +24,7 @@ const priceItems = [
     },
   },
   {
+    id: 3,
     service: "Fasziales Stretching",
     description: "Für optimale Regeneration und Mobilität nach dem Training.",
     subtext: "pro Stunde",

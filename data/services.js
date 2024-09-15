@@ -1,11 +1,15 @@
 const services = [
   {
     id: 1,
+    link_id: "personal-training",
     title: "Personal Training",
+    short:
+      "Wir finden ein Traningsprogramm, das genau das abdeckt was du für das Errecihen deiner Ziele brauchst.",
     description:
       "Personal Training bietet dir die Möglichkeit, effizient und zielgerichtet zu trainieren. Mit meiner Unterstützung maximierst du deine Trainingsergebnisse und minimierst gleichzeitig das Risiko von Verletzungen. Gemeinsam setzen wir realistische und erreichbare Ziele.",
     why: "Im Vergleich zu allgemeinen Trainingsplänen aus dem Fitnessstudio ist Personal Training wesentlich genauer auf Deine spezifische Lebenssituation, Deine Ziele und Deinen aktuellen Fitnessstand abgestimmt. Durch die individuelle Betreuung und das angeleitete Training kommst Du somit schneller und effizienter an Dein Ziel. Außerdem ist Dein Verletzungsrisiko um ein Vielfaches neidriger, da saubere Bewegungsmuster bei mir höchste Priorität haben. Durch mein Personal Training können wir jederzeit auf Veränderungen in deinem Leben geschickt reagieren, um deinen Fortschritt sicherzustellen und messbar zu machen.",
     image: "/images/piet with clients.jpg",
+    alt: "Trainer beim Personal Training",
     step1: "Kennenlernen & Zielsetzung",
     step1_text:
       "Wir lernen uns kennen und erstellen einen maßgeschneiderten Plan, um Deine Ziele zu erreichen.",
@@ -21,11 +25,15 @@ const services = [
   },
   {
     id: 2,
+    link_id: "hautfaltenmessung",
     title: "Hautfaltenmessung",
+    short:
+      "Deine Hautfalten geben Aufschluss über deinen Hormonhaushalt und  verraten mir wie wir deinen Lifestyle optimieren können.",
     description:
       "Neben der reinen Bestimmung des Körperfettanteils zu bestimmen und deine Fortschritte im Fitness- und Ernährungsprogramm genau zu verfolgen. Aber warum solltest du dich für diese Methode entscheiden? Hier sind einige Gründe:",
     why: "Neben der reinen Bestimmung des Körperfettanteils lassen sich aus den Ergebnissen der Hautfaltenmessung präzise Aussagen über Deinen Hormonhaushalt und Lebensstil ableiten. Durch dieses Wissen und gezielte Maßnahmen können wir durch minimale Veränderungen sehr große Verbesserungen Deiner Lebensqualität herbeiführen.",
     image: "/images/HaFa1.jpg",
+    alt: "Fitnesstrainer bei Hautfaltenmessung",
     step1: "Messung der 13 Hautfalten",
     step1_text:
       "Wir messen schnell und schmerzfrei die aussagekräftigsten Hautfalten Deines Körpers.",
@@ -41,11 +49,15 @@ const services = [
   },
   {
     id: 3,
+    link_id: "fasziales-stretching",
     title: "Fasziales Stretching",
+    short:
+      "Ideal für Regeneration, Erweiterung deiner Mobilität oder Verletzungsvorbeugung. Diese vielseitige Methode hat viele Benefits.",
     description:
       "Häufig wird im Fitnessbereich eines der wichtigsten Themen außer Acht gelassen: Regeneration. Beim Faszialen Stretching wird Dein Bindegewebe im Körper gelockert und gedehnt. Da es für Deine Beweglichkeit, Kraft und Dein allgemeines Wohlbefinden eine entscheidende Rolle spielt.",
     why: "Häufig wird im Fitnessbereich eines der wichtigsten Themen außer Acht gelassen: Regeneration. Beim Faszialen Stretching lockere und dehne ich Dein Bindegewebe im Körper, weil es für Deine Beweglichkeit, Kraft und Dein Erholung eine entscheidende Rolle spielt.",
     image: "/images/dehnen.jpg",
+    alt: "Coach beim Faszialen Stretching",
     step1: "Besprechung & Wahl des Anwendungsgebiets",
     step1_text:
       "Je nach Deinen Bedürfnissen wählen wir die Faszien aus, die für Dich im Moment am wichtigsten sind.",
