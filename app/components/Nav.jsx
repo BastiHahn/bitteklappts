@@ -9,6 +9,7 @@ const Nav = () => {
   const headerRef = useRef(null);
   const navBar = useRef(null);
   const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -38,7 +39,8 @@ const Nav = () => {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    hamburgerRef.current.style.display === "none" &&
+      window.addEventListener("scroll", handleScroll);
 
     // Cleanup function to remove event listener
     return () => {
@@ -92,6 +94,7 @@ const Nav = () => {
             className="hamburger"
             viewBox="0 0 16 16"
             onClick={toggleMenu}
+            ref={hamburgerRef}
           >
             <path
               fillRule="evenodd"
