@@ -2460,7 +2460,7 @@ textarea:not(:placeholder-shown) {
     width: 70vw;
   }
   .activeSlide {
-    transform: translateX(0) scale(1.05); /* Keep the center slide at 0 offset and enlarge it */
+    transform: translateX(0) scale(1); /* Keep the center slide at 0 offset and enlarge it */
   }
 }
 
@@ -2498,35 +2498,30 @@ textarea:not(:placeholder-shown) {
 
 @media (max-width: 500px) {
   .slider_flex {
-    margin-top: 6rem;
-  }
-
-  .slide {
-    padding: 4rem 2rem !important;
+    margin-top: 4rem;
   }
 
   .for_arrows {
-    margin-top: 6rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
 
   .activeSlide {
-    transform: translateX(0) scale(1.01); /* Keep the center slide at 0 offset and enlarge it */
+    transform: translateX(0) scale(1); /* Keep the center slide at 0 offset and enlarge it */
   }
 
   .prevSlide {
-    transform: translateX(calc(-100% - 1rem)) scale(0.95); /* Move left and shrink */
+    transform: translateX(-100%) scale(0.95); /* Move left and shrink */
   }
 
   /* Right slide - smaller and partially visible */
   .nextSlide {
-    transform: translateX(calc(100% + 1rem)) scale(0.95); /* Move right and shrink */
+    transform: translateX(100%) scale(0.95); /* Move right and shrink */
   }
 
   .slide {
-    width: 70vw;
     padding: 1.5rem;
   }
 

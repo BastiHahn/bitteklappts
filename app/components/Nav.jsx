@@ -23,13 +23,11 @@ const Nav = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && window.scrollY > 80) {
-        console.log(`"scroll down ${currentScrollY}"`);
         setIsNavVisible(false);
         headerRef.current.style.opacity = 0;
         headerRef.current.style.transform = "translateY(-50px)";
         headerRef.current.style.transition = "all ease-in-out 0.5s";
       } else {
-        console.log("scroll up");
         setIsNavVisible(true);
         headerRef.current.style.opacity = 1;
 
@@ -39,11 +37,8 @@ const Nav = () => {
       setLastScrollY(currentScrollY);
     };
 
-    if (
-      hamburgerRef.current.style.display === "none" &&
-      window.innerWidth < 1024
-    ) {
-      hamburgerRef.current.style.position = "sticky";
+    if (menuOpen) {
+      menuRef.current.style.position = "fixed";
     } else {
       window.addEventListener("scroll", handleScroll);
     }
@@ -119,19 +114,13 @@ const Nav = () => {
             </div>
             {links.map((link) => (
               <div key={link.id} className="link_ham_cont">
-                <Link
-                  onClick={toggleMenu}
-                  href={link.to}
-                  smooth={true}
-                  duration={link.dur}
-                  className="ham_link"
-                >
+                <Link onClick={toggleMenu} href={link.to} className="ham_link">
                   {link.name}
                 </Link>
               </div>
             ))}
             <div className="link_ham_cont">
-              <Link onClick={toggleMenu} href="kontakt" className="ham_link">
+              <Link onClick={toggleMenu} href="#kontakt" className="ham_link">
                 Kontakt
               </Link>
             </div>
