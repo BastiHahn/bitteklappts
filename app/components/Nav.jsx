@@ -22,8 +22,8 @@ const Nav = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        console.log("scroll down");
+      if (currentScrollY > lastScrollY && window.scrollY > 80) {
+        console.log(`"scroll down ${currentScrollY}"`);
         setIsNavVisible(false);
         headerRef.current.style.opacity = 0;
         headerRef.current.style.transform = "translateY(-50px)";
@@ -39,8 +39,14 @@ const Nav = () => {
       setLastScrollY(currentScrollY);
     };
 
-    hamburgerRef.current.style.display === "none" &&
+    if (
+      hamburgerRef.current.style.display === "none" &&
+      window.innerWidth < 1024
+    ) {
+      hamburgerRef.current.style.position = "sticky";
+    } else {
       window.addEventListener("scroll", handleScroll);
+    }
 
     // Cleanup function to remove event listener
     return () => {

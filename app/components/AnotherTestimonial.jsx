@@ -26,7 +26,7 @@ const AnotherTestimonial = () => {
     });
   }, []);
 
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(2);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => {
@@ -126,10 +126,10 @@ const AnotherTestimonial = () => {
                     <img src={s.image} />
                   </div>
                   <div className="personal_info_div">
-                    <h3>{s.name}</h3>
-                    <p className="sub_low">
-                      {s.job}, {s.alter} Jahre alt
-                    </p>
+                    <h3>
+                      {s.name} <span>{`(${s.alter})`}</span>
+                    </h3>
+                    <p className="sub_low">{s.job}</p>
                   </div>
                 </div>
                 <div className="right">
