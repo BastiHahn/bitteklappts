@@ -2507,11 +2507,11 @@ textarea:not(:placeholder-shown) {
 
 @media (max-width: 500px) {
   .slider_flex {
-    margin-top: 4rem;
+    margin-top: 6rem;
   }
 
   .for_arrows {
-    margin-top: 3rem;
+    margin-top: 5rem;
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -2536,7 +2536,7 @@ textarea:not(:placeholder-shown) {
 
   .sub_low {
     width: 100%;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
   }
 }
 
@@ -3225,7 +3225,6 @@ footer {
 
 @media (max-width: 500px) {
   .footer_container {
-    outline: 1px solid yellow;
     grid-template-columns: 1fr 1fr;
     gap: 3rem 1rem !important;
   }

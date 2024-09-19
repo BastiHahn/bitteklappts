@@ -272,7 +272,7 @@ const successStory = [
     image: "Jelena",
     alt: "Bild von Kundin Jelena",
     id: "4",
-    image: "/images/Jelena.jpg",
+    image: "/images/jelena.jpg",
     head: "hold a moul ay sou",
   },
 ];
