@@ -183,6 +183,7 @@ nav a:hover {
 .hamb_cont {
   font-size: var(--fontH4);
   width: 90%;
+  height: 90%;
 }
 body.no-scroll {
   overflow: hidden;
@@ -1491,12 +1492,14 @@ h6 {
 }
 
 .priceview .card:nth-of-type(2) {
+  background: var(--clrBlack);
+
   h3 {
     color: var(--clrGreen);
     font-size: 1.8rem;
     font-weight: 600;
   }
-  background: var(--clrBlack);
+
   svg {
     fill: var(--clrGreen);
   }
@@ -1530,6 +1533,7 @@ h6 {
 .priceview .card:nth-of-type(1) {
   background: var(--clrOtherGrey);
   scale: 0.95;
+
   button {
     border: 1px solid var(--clrWhite);
     background-color: var(--clrBlack);
@@ -1778,6 +1782,11 @@ h3 {
   .priceview .card:nth-of-type(2) {
     h3 {
       font-size: 1.55rem;
+      color: var(--clrGreen);
+    }
+
+    button {
+      background-color: var(--clrGreen);
     }
   }
 
@@ -3216,8 +3225,13 @@ footer {
 
 @media (max-width: 500px) {
   .footer_container {
-    grid-template-columns: 0.5fr 1fr 1fr;
-    gap: 6rem 1rem;
+    outline: 1px solid yellow;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 1rem !important;
+  }
+
+  .f_gr_item4 {
+    grid-column: span 2; /* Takes up the third column */
   }
 
   .log_cont {

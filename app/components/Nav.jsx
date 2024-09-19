@@ -11,24 +11,41 @@ const Nav = () => {
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
 
-  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [disableScroll, setDisableScroll] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    setDisableScroll(!disableScroll);
   };
+
+  useEffect(() => {
+    if (disableScroll) {
+      // Disable vertical scroll
+      document.body.style.overflowY = "hidden";
+      document.documentElement.style.overflowY = "hidden";
+    } else {
+      // Enable vertical scroll
+      document.body.style.overflowY = "auto";
+      document.documentElement.style.overflowY = "auto";
+    }
+
+    // Cleanup function to reset overflow when the component unmounts
+    return () => {
+      document.body.style.overflowY = "auto";
+      document.documentElement.style.overflowY = "auto";
+    };
+  }, [disableScroll]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && window.scrollY > 80) {
-        setIsNavVisible(false);
         headerRef.current.style.opacity = 0;
         headerRef.current.style.transform = "translateY(-50px)";
         headerRef.current.style.transition = "all ease-in-out 0.5s";
       } else {
-        setIsNavVisible(true);
         headerRef.current.style.opacity = 1;
 
         headerRef.current.style.transform = "translateY(0px)";
@@ -39,6 +56,7 @@ const Nav = () => {
 
     if (menuOpen) {
       menuRef.current.style.position = "fixed";
+      menuRef.current.style.top = "0";
     } else {
       window.addEventListener("scroll", handleScroll);
     }
@@ -108,7 +126,7 @@ const Nav = () => {
         <div ref={menuRef} className="hamb_menu">
           <div className="hamb_cont container">
             <div className="link_ham_cont">
-              <Link href="/#home" className="ham_link">
+              <Link href="/#home" className="ham_link" onClick={toggleMenu}>
                 Home
               </Link>
             </div>
