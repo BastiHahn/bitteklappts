@@ -1,21 +1,20 @@
+"use client";
 import Hero from "./components/Hero";
-import AboutMe from "./components/AboutMe";
-
-import Services from "./components/Services";
+import AboutCopy from "./components/AboutCopy";
+import NewServices from "./components/NewServices";
+import NewContact from "./components/NewContact";
 import Prices from "./components/Prices";
-import Contact from "./components/Contact";
-
-import Testimonials from "./components/Testimonials";
+import AnotherTestimonial from "./components/AnotherTestimonial";
 
 export default function Home() {
   return (
     <>
       <main>
         <Hero />
-        <AboutMe />
-        <Services />
-        <Testimonials />
-        <Contact />
+        <AboutCopy />
+        <NewServices />
+        <AnotherTestimonial />
+        <NewContact />
         <Prices />
       </main>
     </>

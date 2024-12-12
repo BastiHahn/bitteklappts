@@ -1,7 +1,6 @@
-import { Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
-import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 
 export const metadata = {
   title: "Personal Training by Peter Beschof",
@@ -12,8 +11,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="de">
-      <body>
-        <Nav></Nav>
+      <body suppressHydrationWarning={true}>
+        <Nav />
         {children}
         <Footer />
       </body>
